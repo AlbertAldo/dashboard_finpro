@@ -58,10 +58,12 @@ def pred1():
 def pred2():
     return render_template('pred2.html')
 
-@app.route('/hasil1', methods=['POST'])
+@app.route('/hasil1', methods=['GET','POST'])
 def result1():
     global recommend
-    if request.method == 'POST':
+    if request.method == "GET":
+        return render_template('pred1.html')
+    elif request.method == 'POST':
         input = request.form
         basements = input["basements"]
         if basements == '0':
@@ -279,9 +281,11 @@ def result1():
         recommend = pd.DataFrame(data=rec, columns=['basements', 'central_air', 'exterior_condition', 'fireplaces', 'garage_type', 'interior_condition', 'market_value', 'number_of_rooms', 'number_stories', 'parcel_shape', 'street_designation', 'topography', 'total_area', 'total_livable_area', 'type_heater', 'view_type', 'building_description', 'section'])
     return render_template('result1.html', data = input, pred = prediction, result_basements = print_basements, result_central_air = print_central_air, result_exterior_condition = print_exterior_condition, result_garage_type = print_garage_type, result_interior_condition = print_interior_condition, result_parcel_shape = print_parcel_shape, result_street_designation = print_street_designation, result_topography = print_topography, result_type_heater = print_type_heater, result_view_type = print_view_type, result_building_description = print_building_description, result_section = print_section)
 
-@app.route('/hasilrecommendation', methods=['POST'])
+@app.route('/hasilrecommendation', methods=['GET','POST'])
 def recommendation():
-    if request.method == 'POST':
+    if request.method == "GET":
+        return render_template('result1.html')
+    elif request.method == 'POST':
         df = pd.read_csv('data/PHL_Building_Dataset_Recommendation_Mini.csv')
         df = df[:25000]
         
@@ -744,9 +748,11 @@ def recommendation():
         recommenderE25 = fifth[24][1]
     return render_template('recommendation.html', result_basements_01 = result_basements_01, result_central_air_01 = result_central_air_01, result_exterior_condition_01 = result_exterior_condition_01, result_fireplaces_01 = result_fireplaces_01, result_garage_type_01 = result_garage_type_01, result_interior_condition_01 = result_interior_condition_01, result_market_value_01 = result_market_value_01, result_number_of_rooms_01 = result_number_of_rooms_01, result_number_stories_01 = result_number_stories_01, result_parcel_shape_01 = result_parcel_shape_01, result_street_designation_01 = result_street_designation_01, result_topography_01 = result_topography_01, result_total_area_01 = result_total_area_01, result_total_livable_area_01 = result_total_livable_area_01, result_type_heater_01 = result_type_heater_01, result_view_type_01 = result_view_type_01, result_building_description_01 = result_building_description_01, result_section_01 = result_section_01 ,input1a = input1a, input2a = input2a, input3a = input3a, input4a = input4a, input5a = input5a, input6a = input6a, input7a = input7a, input8a = input8a, input9a = input9a, input10a = input10a, input11a = input11a, input12a = input12a, input13a = input13a, input14a = input14a, input15a = input15a, input16a = input16a, input17a = input17a, input18a = input18a, input19a = input19a, input20a = input20a, input21a = input21a, input22a = input22a, input23a = input23a, input24a = input24a, input25a = input25a, recommenderA1 = recommenderA1, recommenderA2 = recommenderA2, recommenderA3 = recommenderA3, recommenderA4 = recommenderA4, recommenderA5 = recommenderA5, recommenderA6 = recommenderA6, recommenderA7 = recommenderA7, recommenderA8 = recommenderA8, recommenderA9 = recommenderA9, recommenderA10 = recommenderA10, recommenderA11 = recommenderA11, recommenderA12 = recommenderA12, recommenderA13 = recommenderA13, recommenderA14 = recommenderA14, recommenderA15 = recommenderA15, recommenderA16 = recommenderA16, recommenderA17 = recommenderA17, recommenderA18 = recommenderA18, recommenderA19 = recommenderA19, recommenderA20 = recommenderA20, recommenderA21 = recommenderA21, recommenderA22 = recommenderA22, recommenderA23 = recommenderA23, recommenderA24 = recommenderA24, recommenderA25 = recommenderA25, recommenderB1 = recommenderB1, recommenderB2 = recommenderB2, recommenderB3 = recommenderB3, recommenderB4 = recommenderB4, recommenderB5 = recommenderB5, recommenderB6 = recommenderB6, recommenderB7 = recommenderB7, recommenderB8 = recommenderB8, recommenderB9 = recommenderB9, recommenderB10 = recommenderB10, recommenderB11 = recommenderB11, recommenderB12 = recommenderB12, recommenderB13 = recommenderB13, recommenderB14 = recommenderB14, recommenderB15 = recommenderB15, recommenderB16 = recommenderB16, recommenderB17 = recommenderB17, recommenderB18 = recommenderB18, recommenderB19 = recommenderB19, recommenderB20 = recommenderB20, recommenderB21 = recommenderB21, recommenderB22 = recommenderB22, recommenderB23 = recommenderB23, recommenderB24 = recommenderB24, recommenderB25 = recommenderB25, recommenderC1 = recommenderC1, recommenderC2 = recommenderC2, recommenderC3 = recommenderC3, recommenderC4 = recommenderC4, recommenderC5 = recommenderC5, recommenderC6 = recommenderC6, recommenderC7 = recommenderC7, recommenderC8 = recommenderC8, recommenderC9 = recommenderC9, recommenderC10 = recommenderC10, recommenderC11 = recommenderC11, recommenderC12 = recommenderC12, recommenderC13 = recommenderC13, recommenderC14 = recommenderC14, recommenderC15 = recommenderC15, recommenderC16 = recommenderC16, recommenderC17 = recommenderC17, recommenderC18 = recommenderC18, recommenderC19 = recommenderC19, recommenderC20 = recommenderC20, recommenderC21 = recommenderC21, recommenderC22 = recommenderC22, recommenderC23 = recommenderC23, recommenderC24 = recommenderC24, recommenderC25 = recommenderC25, recommenderD1 = recommenderD1, recommenderD2 = recommenderD2, recommenderD3 = recommenderD3, recommenderD4 = recommenderD4, recommenderD5 = recommenderD5, recommenderD6 = recommenderD6, recommenderD7 = recommenderD7, recommenderD8 = recommenderD8, recommenderD9 = recommenderD9, recommenderD10 = recommenderD10, recommenderD11 = recommenderD11, recommenderD12 = recommenderD12, recommenderD13 = recommenderD13, recommenderD14 = recommenderD14, recommenderD15 = recommenderD15, recommenderD16 = recommenderD16, recommenderD17 = recommenderD17, recommenderD18 = recommenderD18, recommenderD19 = recommenderD19, recommenderD20 = recommenderD20, recommenderD21 = recommenderD21, recommenderD22 = recommenderD22, recommenderD23 = recommenderD23, recommenderD24 = recommenderD24, recommenderD25 = recommenderD25, recommenderE1 = recommenderE1, recommenderE2 = recommenderE2, recommenderE3 = recommenderE3, recommenderE4 = recommenderE4, recommenderE5 = recommenderE5, recommenderE6 = recommenderE6, recommenderE7 = recommenderE7, recommenderE8 = recommenderE8, recommenderE9 = recommenderE9, recommenderE10 = recommenderE10, recommenderE11 = recommenderE11, recommenderE12 = recommenderE12, recommenderE13 = recommenderE13, recommenderE14 = recommenderE14, recommenderE15 = recommenderE15, recommenderE16 = recommenderE16, recommenderE17 = recommenderE17, recommenderE18 = recommenderE18, recommenderE19 = recommenderE19, recommenderE20 = recommenderE20, recommenderE21 = recommenderE21, recommenderE22 = recommenderE22, recommenderE23 = recommenderE23, recommenderE24 = recommenderE24, recommenderE25 = recommenderE25)
 
-@app.route('/hasil2', methods=['POST'])
+@app.route('/hasil2', methods=['GET','POST'])
 def result2():
-    if request.method == 'POST':
+    if request.method == "GET":
+        return render_template('pred2.html')
+    elif request.method == 'POST':
         input = request.form
         basements = input["basements"]
         if basements == '0':
