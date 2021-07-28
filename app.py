@@ -282,10 +282,10 @@ def result1():
 @app.route('/hasilrecommendation', methods=['POST'])
 def recommendation():
     if request.method == 'POST':
-        df = pd.read_csv('PHL_Building_Dataset_Recommendation_Mini.csv')
+        df = pd.read_csv('data/PHL_Building_Dataset_Recommendation_Mini.csv')
         df = df[:25000]
         
-        df2 = pd.read_csv('PHL_Building_Dataset_Recommendation_Big.csv')
+        df2 = pd.read_csv('data/PHL_Building_Dataset_Recommendation_Big.csv')
         df2 = df2.reset_index()
 
         df2['basements'] = df2['basements'].replace({'0': 'None', 'A' : 'Full Finished', 'B' : 'Full Semi-Finished', 
@@ -904,6 +904,6 @@ def result2():
     return render_template('result2.html', data = input, pred = prediction2, result_basements = print_basements, result_central_air = print_central_air, result_exterior_condition = print_exterior_condition, result_garage_type = print_garage_type, result_interior_condition = print_interior_condition, result_parcel_shape = print_parcel_shape, result_topography = print_topography, result_type_heater = print_type_heater, result_view_type = print_view_type, result_building_description = print_building_description)
 
 if __name__ == "__main__":
-    Model_Regressor = joblib.load("Model_PHL_Building_Regressor_DT")
-    Model_Classifier = joblib.load("Model_PHL_Building_Classification_RF")
+    Model_Regressor = joblib.load("model/Model_PHL_Building_Regressor_DT")
+    Model_Classifier = joblib.load("model/Model_PHL_Building_Classification_RF")
     app.run(debug=True)
